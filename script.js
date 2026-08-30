@@ -10,6 +10,9 @@ const categoriaEvento = document.getElementById("categoria-evento");
 const statusEvento = document.getElementById("status-evento");
 const capacidadeEvento = document.getElementById("capacidade-evento");
 const precoEvento = document.getElementById("preco-evento");
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+const scrim = document.getElementById("scrim");
 
 const canvasEventos = document.getElementById("grafico-eventos");
 
@@ -368,6 +371,27 @@ function rendenizarEventos() {
     });
 
 }
+
+// ===============================
+// MENU MOBILE (sidebar off-canvas)
+// ===============================
+
+function abrirSidebar() {
+    sidebar.classList.add("open");
+    scrim.classList.add("active");
+}
+
+function fecharSidebar() {
+    sidebar.classList.remove("open");
+    scrim.classList.remove("active");
+}
+
+menuToggle.addEventListener("click", abrirSidebar);
+scrim.addEventListener("click", fecharSidebar);
+
+document.querySelectorAll("#navList .nav-item").forEach(function (item) {
+    item.addEventListener("click", fecharSidebar);
+});
 
 
 // ===============================
