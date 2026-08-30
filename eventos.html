@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EventOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eventos.css">
+<link rel="stylesheet" href="src/output.css">
+</head>
+
+<body>
+
+    <!-- ===================== SIDEBAR ===================== -->
+
+<aside
+    class="fixed top-0 left-0 flex h-screen w-[230px] flex-col justify-between border-r border-ink/10 bg-surface p-6"
+    id="sidebar"
+>
+
+    <!-- TOPO DA SIDEBAR -->
+    <div>
+
+        <!-- BRAND -->
+        <div class="flex items-center gap-[7px]">
+
+            <span class="flex h-[34px] w-[34px] items-center justify-center rounded-[9px] bg-gradient-to-br from-accent to-[#FF8A65] font-medium text-white">
+                EF
+            </span>
+
+            <span class="font-display text-[1.25rem] font-bold text-ink">
+                EventFlow
+            </span>
+
+        </div>
+
+        <!-- NAVEGAÇÃO -->
+        <ul
+            class="m-0 mt-6 flex list-none flex-col gap-[5px] p-0"
+            id="navList"
+        >
+
+            <!-- DASHBOARD -->
+            <li>
+                <a
+    href="index.html"
+    class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body hover:bg-bg-soft"
+>
+    <span class="ico flex w-5 justify-start">◆</span>
+    Dashboard
+</a>
+            </li>
+
+            <!-- EVENTOS -->
+<li>
+    <a
+    href="eventos.html"
+    class="nav-item active flex w-full items-center justify-start gap-2 rounded-lg bg-accent px-3 py-2 font-body text-white!"
+>
+    <span class="ico flex w-5 justify-start">🎟</span>
+    Eventos
+</a>
+</li>
+
+            <!-- PARTICIPANTES -->
+            <li>
+                <button
+                    class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body hover:bg-bg-soft"
+                    data-view="participantes"
+                >
+                    <span class="ico flex w-5 justify-start">◉</span>
+                    Participantes
+                </button>
+            </li>
+
+            <!-- INSCRIÇÕES -->
+            <li>
+                <button
+                    class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body hover:bg-bg-soft"
+                    data-view="inscricoes"
+                >
+                    <span class="ico flex w-5 justify-start">✔</span>
+                    Inscrições
+                </button>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- RODAPÉ DA SIDEBAR -->
+    <div class="sidebar-foot font-mono text-sm">
+        EventFlow v0.2 · por MACIEL//DEV
+    </div>
+
+</aside>
+
+<div class="scrim" id="scrim"></div>
+
+<main class="ml-[230px] min-h-screen">
+
+
+    <!--EVENTOS PAGE-->
+
+
+<header class="flex items-center justify-between">
+
+    <div class="flex items-center gap-4">
+
+        <button
+            id="menuToggle"
+            class="hidden h-9 w-9 items-center justify-center rounded-full border border-ink/10 bg-surface text-ink"
+            aria-label="Abrir menu"
+        >
+            ☰
+        </button>
+
+        <h3 class="font-display text-2xl font-semibold text-ink px-2 py-4 mt-7">
+            Eventos
+        </h3>
+
+        <form id="searchForm" class="relative">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Pesquisar eventos, participantes..."
+                autocomplete="off"
+                maxlength="90"
+                class="w-[360px] rounded-full border border-ink/10 bg-bg-soft px-4 py-2 text-sm text-ink! outline-none placeholder:text-ink/50 focus:border-accent"
+            >
+        </form>
+
+    </div>
+
+    <div class="flex items-center gap-3">
+
+        <button
+            id="theme-toggle"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-ink/10 bg-surface text-ink transition hover:bg-bg-soft"
+            aria-label="Alternar tema"
+        >
+            <i class="ti ti-moon">🌙</i>
+        </button>
+
+        <button class="rounded-full bg-accent px-4 py-2 font-body text-sm font-semibold text-accent-ink transition hover:opacity-90 bg-accent text-accent-ink!" id="button-add">
+    + Novo Evento
+</button> 
+
+    </div>
+
+</header>
+
+<form id="form-evento" class="hidden fixed inset-0 z-50 items-center justify-center bg-ink/40 p-4">
+
+    <div class="w-full max-w-[420px] rounded-2xl border border-ink/10 bg-surface p-6 shadow-xl">
+
+        <!-- Cabeçalho -->
+        <div class="mb-5 flex items-center justify-between">
+            <div>
+                <h2 class="font-display text-xl font-semibold text-ink">
+                    Novo evento
+                </h2>
+
+                <p class="mt-1 font-body text-xs text-muted">
+                    Cadastre um novo evento no EventOS
+                </p>
+            </div>
+
+            <button
+                type="button"
+                id="fechar-form"
+                aria-label="Fechar formulário"
+                class="flex h-8 w-8 items-center justify-center rounded-full text-muted transition hover:bg-bg-soft hover:text-ink"
+            >
+                ✕
+            </button>
+        </div>
+
+        <!-- Campos -->
+        <div class="flex flex-col gap-4">
+
+            <!-- Título -->
+            <div class="flex flex-col gap-1.5">
+                <label
+                    for="nome-evento"
+                    class="font-body text-sm font-medium text-ink"
+                >
+                    Título
+                </label>
+
+                <input
+                    type="text"
+                    id="nome-evento"
+                    placeholder="Ex: Workshop de React"
+                    required
+                    class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none placeholder:text-muted focus:border-accent"
+                >
+            </div>
+
+            <!-- Descrição -->
+            <div class="flex flex-col gap-1.5">
+                <label
+                    for="descricao-evento"
+                    class="font-body text-sm font-medium text-ink"
+                >
+                    Descrição
+                </label>
+
+                <textarea
+                    id="descricao-evento"
+                    rows="3"
+                    placeholder="Do que se trata esse evento?"
+                    required
+                    class="w-full resize-none rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none placeholder:text-muted focus:border-accent"
+                ></textarea>
+            </div>
+
+            <!-- Data e horário -->
+            <div class="flex gap-3">
+
+                <!-- Data -->
+                <div class="flex flex-1 flex-col gap-1.5">
+                    <label
+                        for="data-evento"
+                        class="font-body text-sm font-medium text-ink"
+                    >
+                        Data
+                    </label>
+
+                    <input
+                        type="date"
+                        id="data-evento"
+                        required
+                        class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none focus:border-accent"
+                    >
+                </div>
+
+                <!-- Horário -->
+                <div class="flex flex-1 flex-col gap-1.5">
+                    <label
+                        for="horario-evento"
+                        class="font-body text-sm font-medium text-ink"
+                    >
+                        Horário
+                    </label>
+
+                    <input
+                        type="time"
+                        id="horario-evento"
+                        required
+                        class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none focus:border-accent"
+                    >
+                </div>
+
+            </div>
+
+            <!-- Local -->
+            <div class="flex flex-col gap-1.5">
+                <label
+                    for="local-evento"
+                    class="font-body text-sm font-medium text-ink"
+                >
+                    Local
+                </label>
+
+                <input
+                    type="text"
+                    id="local-evento"
+                    placeholder="Ex: Centro de Convenções, Curitiba"
+                    required
+                    class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none placeholder:text-muted focus:border-accent"
+                >
+            </div>
+
+            <!-- Categoria e Status -->
+            <div class="flex gap-3">
+
+                <!-- Categoria -->
+                <div class="flex flex-1 flex-col gap-1.5">
+                    <label
+                        for="categoria-evento"
+                        class="font-body text-sm font-medium text-ink"
+                    >
+                        Categoria
+                    </label>
+
+                    <select
+                        id="categoria-evento"
+                        required
+                        class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none focus:border-accent"
+                    >
+                        <option value="">Selecionar</option>
+                        <option value="tecnologia">Tecnologia</option>
+                        <option value="negocios">Negócios</option>
+                        <option value="arte">Arte</option>
+                        <option value="educacao">Educação</option>
+                        <option value="esportes">Esportes</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+
+                <!-- Status -->
+                <div class="flex flex-1 flex-col gap-1.5">
+                    <label
+                        for="status-evento"
+                        class="font-body text-sm font-medium text-ink"
+                    >
+                        Status
+                    </label>
+
+                    <select
+                        id="status-evento"
+                        required
+                        class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none focus:border-accent"
+                    >
+                        <option value="proximo">Próximo</option>
+                        <option value="andamento">Em andamento</option>
+                        <option value="encerrado">Encerrado</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Capacidade e Preço -->
+            <div class="flex gap-3">
+
+                <!-- Capacidade -->
+                <div class="flex flex-1 flex-col gap-1.5">
+                    <label
+                        for="capacidade-evento"
+                        class="font-body text-sm font-medium text-ink"
+                    >
+                        Capacidade
+                    </label>
+
+                    <input
+                        type="number"
+                        id="capacidade-evento"
+                        min="1"
+                        placeholder="50"
+                        required
+                        class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none placeholder:text-muted focus:border-accent"
+                    >
+                </div>
+
+                <!-- Preço -->
+                <div class="flex flex-1 flex-col gap-1.5">
+                    <label
+                        for="preco-evento"
+                        class="font-body text-sm font-medium text-ink"
+                    >
+                        Preço (R$)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="preco-evento"
+                        min="0"
+                        step="0.01"
+                        placeholder="0"
+                        required
+                        class="w-full rounded-lg border border-ink/10 bg-bg-soft px-3 py-2 font-body text-sm text-ink outline-none placeholder:text-muted focus:border-accent"
+                    >
+                </div>
+
+            </div>
+
+            <!-- Botões -->
+            <div class="mt-2 flex justify-end gap-2">
+
+                <button
+                    type="button"
+                    id="cancelar-form"
+                    class="rounded-full border border-ink/10 px-4 py-2.5 font-body text-sm font-semibold text-ink transition hover:bg-bg-soft"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="rounded-full bg-accent px-4 py-2.5 font-body text-sm font-semibold text-accent-ink transition hover:opacity-90"
+                >
+                    Salvar evento
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+   <!-- CATÁLOGO -->
+
+<div class="overview px-6 py-4">
+
+    <div class="flex flex-col items-start mt-4">
+
+        <!-- TÍTULOS -->
+        <p class="font-mono text-sm text-muted ">
+            Catálogo
+        </p>
+
+        <h3 class="mt-1 font-display text-2xl font-semibold text-ink px-2">
+            Eventos
+        </h3>
+
+        <!-- FILTROS -->
+        <div class="mt-4 flex items-center gap-3">
+
+            <select
+                id="categoria-card"
+                class="h-10 rounded-lg border border-ink/10 bg-surface px-3 text-sm text-ink outline-none focus:border-accent"
+            >
+                <option value="todas" selected>
+                    Todas as categorias
+                </option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="negocios">Negócios</option>
+                <option value="arte">Arte</option>
+                <option value="educacao">Educação</option>
+                <option value="comunidade">Comunidade</option>
+            </select>
+
+            <select
+                id="status-card"
+                class="h-10 rounded-lg border border-ink/10 bg-surface px-3 text-sm text-ink outline-none focus:border-accent"
+            >
+                <option value="todos" selected>
+                    Todos os status
+                </option>
+                <option value="proximo">Próximo</option>
+                <option value="andamento">Em andamento</option>
+                <option value="concluido">Concluído</option>
+                <option value="cancelado">Cancelado</option>
+            </select>
+
+            <select
+                id="data"
+                class="h-10 rounded-lg border border-ink/10 bg-surface px-3 text-sm text-ink outline-none focus:border-accent"
+            >
+                <option value="proxima" selected>
+                    Data (mais próxima)
+                </option>
+                <option value="distante">
+                    Data (mais distante)
+                </option>
+                <option value="nome">
+                    Nome A-Z
+                </option>
+                <option value="ocupacao">
+                    Ocupação
+                </option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- LISTA DE EVENTOS -->
+
+    <div id="lista-eventos" class="mt-6">
+        <!-- Os cards serão inseridos pelo JavaScript -->
+    </div>
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+<script src="eventos.js"></script>
+
+</body>
+</html>
