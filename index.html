@@ -9,6 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>
+    if (localStorage.getItem("eventflow-tema") === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+    }
+</script> 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="src/output.css">
 </head>
@@ -58,37 +63,38 @@
             </li>
 
             <!-- EVENTOS -->
+
 <li>
     <a 
         href="eventos.html"
-        class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body hover:bg-bg-soft"
+        class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body text-ink! hover:bg-bg-soft"
     >
         <span class="ico flex w-5 justify-start">🎟</span>
         Eventos
     </a>
 </li>
 
-            <!-- PARTICIPANTES -->
-            <li>
-                <button
-                    class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body hover:bg-bg-soft"
-                    data-view="participantes"
-                >
-                    <span class="ico flex w-5 justify-start">◉</span>
-                    Participantes
-                </button>
-            </li>
+<!-- PARTICIPANTES -->
+<li>
+    <a
+        href="participantes.html"
+        class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body hover:bg-bg-soft"
+    >
+        <span class="ico flex w-5 justify-start">◉</span>
+        Participantes
+    </a>
+</li>
 
-            <!-- INSCRIÇÕES -->
-            <li>
-                <button
-                    class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body hover:bg-bg-soft"
-                    data-view="inscricoes"
-                >
-                    <span class="ico flex w-5 justify-start">✔</span>
-                    Inscrições
-                </button>
-            </li>
+<!-- INSCRIÇÕES -->
+<li>
+    <button
+        class="nav-item flex w-full items-center justify-start gap-2 rounded-lg px-3 py-2 font-body text-ink! hover:bg-bg-soft"
+        data-view="inscricoes"
+    >
+        <span class="ico flex w-5 justify-start">✔</span>
+        Inscrições
+    </button>
+</li>
 
         </ul>
 
@@ -391,7 +397,7 @@
 
 </header>
 
-<main class="ml-[230px] bg-white animate-fade-in">
+<main class="ml-[230px] bg-bg animate-fade-in">
 
    <!-- VISÃO GERAL -->
 
@@ -632,6 +638,7 @@
 </main>
 </div>
 
+  
 
 <script src="script.js"></script>
 

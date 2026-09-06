@@ -393,6 +393,38 @@ document.querySelectorAll("#navList .nav-item").forEach(function (item) {
     item.addEventListener("click", fecharSidebar);
 });
 
+// ===============================
+// TEMA CLARO / ESCURO
+// ===============================
+
+const themeToggle = document.getElementById("theme-toggle");
+const temaSalvo = localStorage.getItem("eventflow-tema");
+
+function atualizarIconeTema() {
+    const icone = themeToggle.querySelector("i");
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    icone.textContent = isDark ? "☀️" : "🌙";
+}
+
+if (temaSalvo === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+}
+
+atualizarIconeTema();
+
+themeToggle.addEventListener("click", function () {
+    const temaAtual = document.documentElement.getAttribute("data-theme");
+
+    if (temaAtual === "dark") {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("eventflow-tema", "light");
+    } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("eventflow-tema", "dark");
+    }
+
+    atualizarIconeTema();
+});
 
 // ===============================
 // REDIMENSIONAMENTO

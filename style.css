@@ -99,6 +99,10 @@ button {
     outline-offset: 2px;
 }
 
+#theme-toggle:focus-visible {
+    outline-offset: 4px;
+}
+
 h1,
 h2,
 h3 {
