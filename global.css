@@ -21,6 +21,19 @@
     --font-mono: 'JetBrains Mono', monospace;
 }
 
+[data-theme="dark"] {
+    --bg: #121026;
+    --bg-soft: #1A1836;
+    --surface: #1E1B3F;
+    --ink: #F1F0FA;
+    --muted: #9C98B8;
+    --border: rgba(241, 240, 250, 0.1);
+    --teal-soft: rgba(15, 162, 133, 0.16);
+    --amber-soft: rgba(201, 124, 10, 0.18);
+    --danger-soft: rgba(225, 75, 75, 0.16);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -35,6 +48,7 @@ body {
     color: var(--ink);
     font-family: var(--font-body);
     min-height: 100vh;
+    transition: background 0.25s ease, color 0.25s ease;
 }
 
 button,
