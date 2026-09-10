@@ -1,0 +1,62 @@
+:root {
+    --bg: #F6F5FB;
+    --bg-soft: #EDEBF7;
+    --surface: #FFFFFF;
+    --ink: #1B1A35;
+    --muted: #6B6885;
+    --border: rgba(27, 26, 53, 0.12);
+    --accent: #FF5A3C;
+    --accent-ink: #FFFFFF;
+    --teal: #0FA285;
+    --teal-soft: #E3F7F1;
+    --amber: #C97C0A;
+    --amber-soft: #FBEEDA;
+    --danger: #E14B4B;
+    --danger-soft: #FBE7E7;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 10px 30px rgba(27, 26, 53, 0.08);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+p {
+    margin: 0;
+}

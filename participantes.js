@@ -246,6 +246,7 @@ function fecharSidebar() {
 
 menuToggle.addEventListener("click", abrirSidebar);
 scrim.addEventListener("click", fecharSidebar);
+
 // ===============================
 // TEMA CLARO / ESCURO
 // ===============================
@@ -277,3 +278,14 @@ themeToggle.addEventListener("click", function () {
 
     atualizarIconeTema();
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const main = document.querySelector('main.animate-fade-in');
+    if (main) {
+        main.style.animation = 'none';
+        void main.offsetWidth; // força reflow pra reiniciar a animação
+        main.style.animation = '';
+    }
+});
+
