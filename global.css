@@ -74,3 +74,35 @@ h3 {
 p {
     margin: 0;
 }
+
+/* Sidebar responsiva (mobile) */
+#sidebar {
+    transition: transform 0.3s ease;
+    z-index: 50;
+}
+
+@media (max-width: 767px) {
+    #sidebar {
+        transform: translateX(-100%);
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+}
+
+/* Overlay escuro atrás da sidebar aberta */
+.scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 40;
+}
+
+.scrim.active {
+    opacity: 1;
+    pointer-events: auto;
+}

@@ -1,4 +1,4 @@
-console.log("Página de inscrições carregada!");
+
 
 const btnAdd = document.getElementById("button-add");
 const formulario = document.getElementById("form-inscricao");
@@ -405,7 +405,7 @@ formulario.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
-    console.log("SUBMIT FUNCIONOU!");
+    
 
     const eventoEscolhido =
         eventoInscricao.value;

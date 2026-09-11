@@ -322,9 +322,7 @@ btnAdd.addEventListener(
 
         formulario.style.display = "flex";
 
-        console.log(
-            "Formulário aberto"
-        );
+       
 
     }
 );
